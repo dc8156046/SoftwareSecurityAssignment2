@@ -4,7 +4,40 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.print.DocFlavor.STRING;
+
 public class ManageComputers {
+    private static final String[] VALID_CPUS = {"i5", "i7"};
+    private static final String[] VALID_RAM = {"16", "32"};
+    private static final String[] VALID_DISK = {"512", "1024"};
+
+    private static boolean ValidateCPU(String cpu){
+        for(String validCPU :VALID_CPUS){
+            if(validCPU.equals(cpu)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean ValidateRAM(String ram){
+        for(String validRAM :VALID_RAM){
+            if(validRAM.equals(ram)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean ValidateDISK(String disk){
+        for(String validDISK :VALID_DISK){
+            if(validDISK.equals(disk)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String args[]) {
 
@@ -263,14 +296,29 @@ public class ManageComputers {
         String RAM="";
         String disk="";
 
+        while(true){
         System.out.print("Enter CPU:");
         CPU = s.nextLine();
+        if(ValidateCPU(CPU)){
+            break;
+        }
+    }
 
+    while(true){
         System.out.print("Enter RAM:");
         RAM = s.nextLine();
+        if(ValidateRAM(RAM)){
+            break;
+        }
+    }
 
+        while(true){
         System.out.print("Enter Disk:");
         disk = s.nextLine();
+        if(ValidateDISK(disk)){
+            break;
+        }
+    }
 
         return new Computer(CPU,RAM,disk);
 
