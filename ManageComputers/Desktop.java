@@ -1,31 +1,25 @@
 //Desktop computer: adds GPU type
 
-public class Desktop {
-    Computer computer=null; //Composition: Desktop has a Computer
-    String GPUType=null;
+public final class Desktop {
+    Computer computer; // Composition: Desktop has a Computer
+    String GPUType = null;
 
-    //Constructors
-    public Desktop() {
-        
-    } //No-arg constructor
+    // Constructors
 
     public Desktop(String CPU, String RAM, String disk, String GPUType) {
-        //Call Computer constructor
         this.computer = new Computer(CPU, RAM, disk);
-
-        //Only in Desktop subclass
-        this.GPUType=GPUType;
+        this.GPUType = GPUType;
     }
-    
-    //Getter
+
+    // Getters
     public String getCPU() {
         return computer.getCPU();
     }
-    
+
     public String getRAM() {
         return computer.getRAM();
     }
-    
+
     public String getDisk() {
         return computer.getDisk();
     }
@@ -34,12 +28,10 @@ public class Desktop {
         return this.GPUType;
     }
 
-    //Return formatted version of data
+    @Override
     public String toString() {
-        return "Type:Desktop\tCPU:" + getCPU() + 
-               "\tRAM:" + getRAM() + 
-               "\tDisk:" + getDisk() + 
-               "\tGPU:" + GPUType;
+        return String.format("Type: Desktop  CPU:%-5s RAM:%-3s Disk:%-4s GPU:%s",
+                getCPU(), getRAM(), getDisk(), GPUType);
     }
 
 }
