@@ -6,7 +6,7 @@ public class Laptop { //Laptop
 
     //Constructors
     public Laptop() {
-        computer = new Computer();
+        
     } //No-arg constructor
 
     public Laptop(String CPU, String RAM, String disk, String screenSize) {
@@ -16,18 +16,8 @@ public class Laptop { //Laptop
         this.screenSize=screenSize;
     }
 
-    public void setCPU(String CPU) {
-        computer.setCPU(CPU);
-    }
     
-    public void setRAM(String RAM) {
-        computer.setRAM(RAM);
-    }
-    
-    public void setDisk(String disk) {
-        computer.setDisk(disk);
-    }
-    
+    //Getter
     public String getCPU() {
         return computer.getCPU();
     }
@@ -40,12 +30,6 @@ public class Laptop { //Laptop
         return computer.getDisk();
     }
 
-    //Setter
-    public void setScreenSize(String screenSize) {
-        this.screenSize=screenSize;
-    }
-
-    //Getter
     public String getScreenSize() {
         return this.screenSize;
     }
