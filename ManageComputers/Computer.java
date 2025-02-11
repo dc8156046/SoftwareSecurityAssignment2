@@ -1,33 +1,20 @@
 //Computer class: manages computer CPU, RAM and Disk information
 
 public class Computer {
-    String CPU=null;
-    String RAM=null;
-    String disk=null;
 
-    //Constructors
-    public Computer() {} //No-arg contructor
+    private final String CPU; // CPU, RAM and Disk are final as they should not be changed once set
+    private final String RAM;
+    private final String disk;
+
+    // Constructors
 
     public Computer(String CPU, String RAM, String disk) {
-        this.CPU=CPU;
-        this.RAM=RAM;
-        this.disk=disk;
+        this.CPU = CPU;
+        this.RAM = RAM;
+        this.disk = disk;
     }
 
-    //Setters
-    public void setCPU(String CPU) {
-        this.CPU=CPU;
-    }
-
-    public void setRAM(String RAM) {
-        this.RAM=RAM;
-    }
-
-    public void setDisk(String disk) {
-        this.disk=disk;
-    }
-
-    //Getters
+    // Getters
     public String getCPU() {
         return this.CPU;
     }
@@ -39,6 +26,5 @@ public class Computer {
     public String getDisk() {
         return this.disk;
     }
-
 
 }
