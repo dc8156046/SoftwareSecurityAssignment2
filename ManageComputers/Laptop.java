@@ -1,11 +1,21 @@
 //Laptop computer: adds screen size to other Computer info
 
+import java.util.Set;
+
 public final class Laptop {
+    // White list of valid screen sizes
+    private static final Set<String> VALID_SCREEN_SIZES = Set.of("13", "14");
+
     private final Computer computer; // Composition: Laptop has a Computer
     private final String screenSize;
 
     // Constructor
     public Laptop(String CPU, String RAM, String disk, String screenSize) {
+        if (!VALID_SCREEN_SIZES.contains(screenSize)) {
+            throw new IllegalArgumentException(
+                    "Invalid screen size: " + screenSize + ". Allowed values: " + VALID_SCREEN_SIZES);
+        }
+
         this.computer = new Computer(CPU, RAM, disk);
         this.screenSize = screenSize;
     }

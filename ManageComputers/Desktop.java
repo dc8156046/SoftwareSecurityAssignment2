@@ -1,12 +1,21 @@
 //Desktop computer: adds GPU type
 
+import java.util.Set;
+
 public final class Desktop {
+    // White list of valid GPU values
+    private static final Set<String> VALID_GPUS = Set.of("Nvidia", "AMD");
+
     Computer computer; // Composition: Desktop has a Computer
     String GPUType = null;
 
     // Constructors
 
     public Desktop(String CPU, String RAM, String disk, String GPUType) {
+        if (!VALID_GPUS.contains(GPUType)) {
+            throw new IllegalArgumentException("Invalid GPU type: " + GPUType + ". Allowed values: " + VALID_GPUS);
+        }
+
         this.computer = new Computer(CPU, RAM, disk);
         this.GPUType = GPUType;
     }
