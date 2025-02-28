@@ -34,8 +34,8 @@ public class ManageComputers {
         // ArrayList are Computer, not Laptop or Desktop, but since those are subclasses
         // of Computer they can be
         // stored in an ArrayList<Computer> anyway.
-        ArrayList<Computer> computers = new ArrayList<Computer>();
 
+        ArrayList<Computer> computers = new ArrayList<>();
         Scanner s = new Scanner(System.in);
         String menuOption = "";
 
@@ -96,7 +96,7 @@ public class ManageComputers {
 
         menuOption = menuOption.toLowerCase(); // Make lower case for comparison purposes
 
-        return menuOption;
+        return s.nextLine().toLowerCase();
     } // End of getMenuSelection
 
     // -----------------------------
@@ -182,7 +182,7 @@ public class ManageComputers {
         System.out.println("DELETE COMPUTER:-");
 
         System.out.print("Enter number of computer to delete:");
-        computerListNumberToDelete = Integer.parseInt(s.nextLine());
+        int computerListNumberToDelete = Integer.parseInt(s.nextLine()) - 1;
 
         // Check if computer list number is valid before deleting computer from list
         if (computerListNumberToDelete >= 1 && computerListNumberToDelete <= computers.size()) {
@@ -207,7 +207,7 @@ public class ManageComputers {
         System.out.println("EDIT COMPUTER:-");
 
         System.out.print("Enter number of computer to edit:");
-        computerListNumberToEdit = Integer.parseInt(s.nextLine());
+        int computerListNumberToEdit = Integer.parseInt(s.nextLine()) - 1;
 
         // Check that computerListNumberToEdit is valid first
         if (computerListNumberToEdit >= 1 && computerListNumberToEdit <= computers.size()) {
@@ -270,7 +270,6 @@ public class ManageComputers {
                     break;
 
             }
-
         } else {
             System.out.println("Invalid computer number entered!");
         }

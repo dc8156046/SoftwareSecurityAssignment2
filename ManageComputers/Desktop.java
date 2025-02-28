@@ -1,4 +1,4 @@
-//Desktop computer: adds GPU type
+// Desktop.java
 
 import java.util.Set;
 
@@ -10,19 +10,21 @@ public final class Desktop {
     String GPUType = null;
 
     // Constructors
-
     public Desktop(String CPU, String RAM, String disk, String GPUType) {
         if (!VALID_GPUS.contains(GPUType)) {
             throw new IllegalArgumentException("Invalid GPU type: " + GPUType + ". Allowed values: " + VALID_GPUS);
         }
 
         this.computer = new Computer(CPU, RAM, disk);
+        if (!GPUType.equals("Nvidia") && !GPUType.equals("AMD")) {
+            throw new IllegalArgumentException("Invalid GPU type!");
+        }
         this.GPUType = GPUType;
     }
 
     // Getters
-    public String getCPU() {
-        return computer.getCPU();
+    public String getGPUType() {
+        return GPUType;
     }
 
     public String getRAM() {
@@ -33,8 +35,8 @@ public final class Desktop {
         return computer.getDisk();
     }
 
-    public String getGPUType() {
-        return this.GPUType;
+    public String getCPU() {
+        return computer.getCPU();
     }
 
     @Override
@@ -42,5 +44,4 @@ public final class Desktop {
         return String.format("Type: Desktop  CPU:%-5s RAM:%-3s Disk:%-4s GPU:%s",
                 getCPU(), getRAM(), getDisk(), GPUType);
     }
-
 }

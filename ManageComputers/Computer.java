@@ -32,15 +32,32 @@ public class Computer {
 
     // Getters
     public String getCPU() {
-        return this.CPU;
+        return CPU;
     }
 
     public String getRAM() {
-        return this.RAM;
+        return RAM;
     }
 
     public String getDisk() {
-        return this.disk;
+        return disk;
     }
 
+    // Whitelist validation methods for each attribute
+    private boolean isValidCPU(String CPU) {
+        return CPU.equals("i5") || CPU.equals("i7");
+    }
+
+    private boolean isValidRAM(String RAM) {
+        return RAM.equals("16") || RAM.equals("32");
+    }
+
+    private boolean isValidDisk(String disk) {
+        return disk.equals("512") || disk.equals("1024");
+    }
+
+    @Override
+    public String toString() {
+        return "CPU: " + CPU + ", RAM: " + RAM + ", Disk: " + disk;
+    }
 }
