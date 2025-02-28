@@ -17,9 +17,6 @@ public final class Laptop {
         }
 
         this.computer = new Computer(CPU, RAM, disk);
-        if (!screenSize.equals("13") && !screenSize.equals("14")) {
-            throw new IllegalArgumentException("Invalid screen size!");
-        }
         this.screenSize = screenSize;
     }
 

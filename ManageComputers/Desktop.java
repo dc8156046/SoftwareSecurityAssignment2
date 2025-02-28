@@ -6,8 +6,8 @@ public final class Desktop {
     // White list of valid GPU values
     private static final Set<String> VALID_GPUS = Set.of("Nvidia", "AMD");
 
-    Computer computer; // Composition: Desktop has a Computer
-    String GPUType = null;
+    private final Computer computer; // Composition: Desktop has a Computer
+    private final String GPUType;
 
     // Constructors
     public Desktop(String CPU, String RAM, String disk, String GPUType) {
@@ -16,9 +16,6 @@ public final class Desktop {
         }
 
         this.computer = new Computer(CPU, RAM, disk);
-        if (!GPUType.equals("Nvidia") && !GPUType.equals("AMD")) {
-            throw new IllegalArgumentException("Invalid GPU type!");
-        }
         this.GPUType = GPUType;
     }
 
