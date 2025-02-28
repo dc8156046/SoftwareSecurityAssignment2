@@ -81,20 +81,27 @@ public class ManageComputers {
     // Display menu and get user selection, return it
     private static String getMenuSelection(Scanner s) {
         String menuOption = "";
+        Set<String> validOptions = Set.of("a", "d", "e", "x");
 
-        // Display menu options on-screen
-        System.out.println("----------");
-        System.out.println("A) Add Computer");
-        System.out.println("D) Delete Computer");
-        System.out.println("E) Edit Computer");
-        System.out.println("X) eXit");
-        System.out.println("----------");
+        do {
+            // Display menu options on-screen
+            System.out.println("----------");
+            System.out.println("A) Add Computer");
+            System.out.println("D) Delete Computer");
+            System.out.println("E) Edit Computer");
+            System.out.println("X) eXit");
+            System.out.println("----------");
 
-        // Get menu selection from keyboard
-        System.out.print("Enter menu selection:");
-        menuOption = s.nextLine();
+            // Get menu selection from keyboard
+            System.out.print("Enter menu selection:");
+            menuOption = s.nextLine();
 
-        menuOption = menuOption.toLowerCase(); // Make lower case for comparison purposes
+            menuOption = menuOption.toLowerCase(); // Make lower case for comparison purposes
+
+            if (!validOptions.contains(menuOption)) {
+                System.out.println("Invalid option! Please enter A, D, E, or X.");
+            }
+        } while (!validOptions.contains(menuOption));
 
         return menuOption;
     } // End of getMenuSelection
@@ -127,12 +134,17 @@ public class ManageComputers {
     // -----------------------------
     // Add a new Laptop or Desktop computer to the ArrayList<Computer>
     private static void addComputer(ArrayList<Object> computers, Scanner s) {
-        String computerType = "";
         System.out.println("ADDING COMPUTER:-");
 
-        System.out.println("Enter type of computer to add ('L' for Laptop, 'D' for Desktop):");
-        computerType = s.nextLine();
-        computerType = computerType.toLowerCase(); // Convert to lower case for comparison purposes
+        String computerType;
+        do {
+            System.out.println("Enter type of computer to add ('L' for Laptop, 'D' for Desktop):");
+            computerType = s.nextLine().trim().toLowerCase();
+
+            if (!computerType.equals("l") && !computerType.equals("d")) {
+                System.out.println("Invalid input! Please enter 'L' or 'D'.");
+            }
+        } while (!computerType.equals("l") && !computerType.equals("d"));
 
         String[] computerData = getComputerData(s);
         String CPU = computerData[0];
@@ -175,22 +187,38 @@ public class ManageComputers {
     // -----------------------------
     // Delete a specified computer from the ArrayList
     private static void deleteComputer(ArrayList<Object> computers, Scanner s) {
-        int computerListNumberToDelete = 0;
-
         System.out.println("DELETE COMPUTER:-");
 
-        System.out.print("Enter number of computer to delete:");
-        computerListNumberToDelete = Integer.parseInt(s.nextLine()) - 1;
-
-        // Check if computer list number is valid before deleting computer from list
-        if (computerListNumberToDelete >= 0 && computerListNumberToDelete <= computers.size()) {
-            // Subtract 1 to get ArrayList index from on-screen list number to create
-            // correct index in ArrayList to delete
-            computers.remove(computerListNumberToDelete);
-        } else {
-            System.out.println("Invalid computer number entered!");
+        if (computers.isEmpty()) {
+            System.out.println("No computers available to delete.");
+            return;
         }
 
+        int computerListNumberToDelete = -1;
+        boolean validInput = false;
+
+        do {
+            System.out.print("Enter number of computer to delete:");
+            String input = s.nextLine().trim();
+
+            try {
+                computerListNumberToDelete = Integer.parseInt(input) - 1;
+
+                // Check if computer list number is valid before deleting computer from list
+                if (computerListNumberToDelete >= 0 && computerListNumberToDelete < computers.size()) {
+                    // Subtract 1 to get ArrayList index from on-screen list number to create
+                    // correct index in ArrayList to delete
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid computer number entered!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number.");
+            }
+        } while (!validInput);
+
+        computers.remove(computerListNumberToDelete);
+        System.out.println("Computer successfully deleted.");
     } // End of deleteComputer
 
     // -----------------------------
