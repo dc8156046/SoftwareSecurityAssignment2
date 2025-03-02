@@ -4,6 +4,7 @@ import java.util.Set;
 
 public class Computer {
     // White list of valid CPU, RAM and Disk values
+    // set is an unmodifiable collection of unique elements
     private static final Set<String> VALID_CPUS = Set.of("i5", "i7");
     private static final Set<String> VALID_RAM = Set.of("16", "32");
     private static final Set<String> VALID_DISK = Set.of("512", "1024");
@@ -15,6 +16,7 @@ public class Computer {
     // Constructors
 
     public Computer(String CPU, String RAM, String disk) {
+        // Check if CPU, RAM and Disk are valid
         if (!VALID_CPUS.contains(CPU)) {
             throw new IllegalArgumentException("Invalid CPU type: " + CPU + ". Allowed values: " + VALID_CPUS);
         }
@@ -24,7 +26,7 @@ public class Computer {
         if (!VALID_DISK.contains(disk)) {
             throw new IllegalArgumentException("Invalid Disk size: " + disk + ". Allowed values: " + VALID_DISK);
         }
-
+        //if CPU, RAM and Disk are valid, set the values
         this.CPU = CPU;
         this.RAM = RAM;
         this.disk = disk;
